@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import time
+from datetime import time, datetime
 from program.models import Department
 from teacher.models import Teacher
 from pages.models import Bulding
@@ -49,8 +49,8 @@ class Classes (models.Model):
     end = models.TimeField(default=time)
     room_number = models.IntegerField()
     bulding = models.ForeignKey(
-        Bulding, on_delete=models.CASCADE, default='main')
-    date = models.DateTimeField(auto_now_add=True)
+        Bulding, on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.room_number
@@ -64,8 +64,9 @@ class CourceLab(models.Model):
         choices=class_durations, default='1.20', max_length=10)
     end = models.TimeField(default=time)
     room_number = models.IntegerField()
-    bulding = models.ForeignKey(Bulding, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=True)
+    bulding = models.ForeignKey(
+        Bulding, on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
         return self.room_number

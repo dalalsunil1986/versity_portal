@@ -8,3 +8,6 @@ class Bulding(models.Model):
     name = models.CharField(
         max_length=50, choices=bulding_list, default='main')
     date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'semester.apps.SemesterConfig',
     'cource.apps.CourceConfig',
     'pages.apps.PagesConfig',
+    'gradesheet.apps.GradesheetConfig',
 ]
 
 MIDDLEWARE = [

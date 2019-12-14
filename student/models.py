@@ -4,6 +4,7 @@ from datetime import date
 from semester.models import Semester
 from teacher.models import Teacher
 from program.models import Program, Department
+from cource.models import Section
 
 # Create your models here.
 
@@ -26,3 +27,25 @@ class Student(models.Model):
     cgpa = models.DecimalField(
         max_digits=2, decimal_places=2, default=0.0, blank=True)
     date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.std_id
+
+
+class StdComplatedSemester (models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    Semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.student
+
+
+class StdRunningSemester(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    Semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.student

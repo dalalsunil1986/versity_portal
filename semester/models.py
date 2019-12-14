@@ -6,14 +6,14 @@ semester_choice = (("Fall", "Fall"), ("Spring", "Spring"),
 
 
 class Semester(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, blank=True)
     season = models.CharField(
         max_length=150, choices=semester_choice, default="Fall")
     year = models.IntegerField()
 
     def get_title(self):
-        title = f"{self.season} {self.year}"
-        title.save()
+        self.title = f"{self.season} {self.year}"
+        # title.save()
 
     def __str__(self):
         return self.title

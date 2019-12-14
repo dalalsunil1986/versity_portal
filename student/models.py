@@ -20,9 +20,9 @@ class Student(models.Model):
     email = models.EmailField()
     addres = models.CharField(max_length=1000)
     advisor = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True)
-    program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)
+    program = models.ForeignKey(Program, on_delete=models.CASCADE)
     department = models.ForeignKey(
-        Department, on_delete=models.SET_NULL, null=True)
+        Department, on_delete=models.CASCADE, null=True)
     is_graduate = models.BooleanField(default=False)
     cgpa = models.DecimalField(
         max_digits=2, decimal_places=2, default=0.0, blank=True)

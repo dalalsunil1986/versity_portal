@@ -17,8 +17,7 @@ class Teacher(models.Model):
     email = models.EmailField(blank=True)
     addres = models.CharField(max_length=1000, blank=True)
     program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)
-    department = models.ForeignKey(
-        Department, on_delete=models.SET_NULL, null=True)
+    available = models.BooleanField(default=True)
     date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
